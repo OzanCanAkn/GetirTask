@@ -9,7 +9,6 @@ export default function ProductList({ items, companiesList }) {
   return (
     <Grid item xs={6} container>
       <ItemTypeButtons></ItemTypeButtons>
-
       <Grid
         style={{
           backgroundColor: "#ffffff",
