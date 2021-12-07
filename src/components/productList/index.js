@@ -11,8 +11,9 @@ export default function ProductList({ items, companiesList }) {
         backgroundColor: "#ffffff",
         borderRadius: 10,
         marginTop: 30,
-        padding:15,
+        padding: 15,
       }}
+      item
       xs={6}
     >
       <Grid

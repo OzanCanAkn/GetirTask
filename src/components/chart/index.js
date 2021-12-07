@@ -17,6 +17,7 @@ export default function Chart() {
   }, [items]);
   return (
     <Grid
+      item
       style={{
         backgroundColor: "#ffffff",
         border: "5px #1EA4CE solid",
@@ -70,7 +71,7 @@ export default function Chart() {
           );
         })}
         <Grid xs={12} container justifyContent="flex-end">
-        <ChartTotal item total={total}></ChartTotal>
+          <ChartTotal item total={total}></ChartTotal>
         </Grid>
       </Grid>
     </Grid>

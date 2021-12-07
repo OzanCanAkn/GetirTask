@@ -15,7 +15,7 @@ function App() {
     <div style={{ backgroundColor: "#fafafa" }}>
       <Header></Header>
       <Grid style={{ marginLeft: "5vw", marginRight: "5vw", marginTop: "7vh" }}>
-        <Grid xs={12} spacing={1} container>
+        <Grid xs={12} spacing={4} container>
           <Grid xs={3} item id="filtersContainer">
             <SortTab></SortTab>
             <CheckboxGroup groupType="brand"></CheckboxGroup>
