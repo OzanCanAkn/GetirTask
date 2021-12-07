@@ -17,7 +17,7 @@ export default function ChartTotal({total}) {
       item
     >
       <p style={{ color: "#1EA4CE", textAlign: "center", margin: "auto" }}>
-        {total}
+      ₺ {total}
       </p>
     </div>
   );
