@@ -14,7 +14,7 @@ function App() {
   return (
     <div style={{ backgroundColor: "#fafafa" }}>
       <Header></Header>
-      <Grid style={{ marginLeft: "5vw", marginRight: "5vw",marginTop:"7vh" }}>
+      <Grid style={{ marginLeft: "5vw", marginRight: "5vw", marginTop: "7vh" }}>
         <Grid xs={12} spacing={1} container>
           <Grid xs={3} item id="filtersContainer">
             <SortTab></SortTab>
@@ -25,7 +25,7 @@ function App() {
             items={items}
             companiesList={companiesList}
           ></ProductList>
-          <Chart></Chart>
+          <Chart item xs={3}></Chart>
         </Grid>
       </Grid>
     </div>
