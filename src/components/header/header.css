@@ -1,0 +1,19 @@
+#container{
+    width: 100%;
+    height: 7vh;
+    padding-left:5vw;
+    padding-right: 5vw;
+    margin-bottom: 3vh;
+    background-color: #1ea4ce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#lock{
+    background-color: #147594;
+    padding-right: 1rem;
+}
+#basketContainer{
+    background-color: #147594;
+    height: 7vh;
+}
