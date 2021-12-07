@@ -16,62 +16,63 @@ export default function Chart() {
     setTotal(Math.round(addition * 100) / 100);
   }, [items]);
   return (
-    <Grid
-      item
-      style={{
-        backgroundColor: "#ffffff",
-        border: "5px #1EA4CE solid",
-        borderRadius: 3,
-        maxHeight: 300,
-        overflow: "scroll",
-      }}
-      xs={3}
-    >
-      <Grid style={{ marginLeft: 20, marginRight: 20 }}>
-        {items.map((item, key) => {
-          return (
-            <Grid
-              item
-              container
-              key={key}
-              direction="row"
-              alignItems="space-between"
-              style={{ borderBottom: "1px solid #f6f6f6" }}
-            >
-              <Grid item xs={5}>
-                <p
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontStyle: "normal",
-                    fontWeight: "normal",
-                    fontSize: 14,
-                    lineHeight: 1.4,
-                    letterSpacing: 0.16,
-                    color: "#191919",
-                  }}
-                >
-                  {item.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontStyle: "normal",
-                    fontWeight: 600,
-                    fontSize: 14,
-                    lineHeight: 1.4,
-                    letterSpacing: 0.16,
-                    color: "#1EA4CE",
-                  }}
-                >
-                  ₺ {item.price}
-                </p>
+    <Grid xs={3} style={{ paddingLeft: 12 }}>
+      <Grid
+        item
+        style={{
+          backgroundColor: "#ffffff",
+          border: "5px #1EA4CE solid",
+          borderRadius: 3,
+          maxHeight: 300,
+          overflow: "scroll",
+        }}
+      >
+        <Grid style={{ marginLeft: 20, marginRight: 20 }}>
+          {items.map((item, key) => {
+            return (
+              <Grid
+                item
+                container
+                key={key}
+                direction="row"
+                alignItems="space-between"
+                style={{ borderBottom: "1px solid #f6f6f6" }}
+              >
+                <Grid item xs={5}>
+                  <p
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontStyle: "normal",
+                      fontWeight: "normal",
+                      fontSize: 14,
+                      lineHeight: 1.4,
+                      letterSpacing: 0.16,
+                      color: "#191919",
+                    }}
+                  >
+                    {item.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontStyle: "normal",
+                      fontWeight: 600,
+                      fontSize: 14,
+                      lineHeight: 1.4,
+                      letterSpacing: 0.16,
+                      color: "#1EA4CE",
+                    }}
+                  >
+                    ₺ {item.price}
+                  </p>
+                </Grid>
+                <Counter item={item}></Counter>
               </Grid>
-              <Counter item={item}></Counter>
-            </Grid>
-          );
-        })}
-        <Grid xs={12} container justifyContent="flex-end">
-          <ChartTotal item total={total}></ChartTotal>
+            );
+          })}
+          <Grid xs={12} container justifyContent="flex-end">
+            <ChartTotal item total={total}></ChartTotal>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
