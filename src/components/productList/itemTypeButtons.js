@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { padding } from "@mui/system";
 
 const CheckedButton = styled(Button)(() => ({
   color: "#ffffff",
@@ -11,7 +10,7 @@ const CheckedButton = styled(Button)(() => ({
     backgroundColor: "#147594",
   },
   height: 30,
-  textTransform: "capitalize",
+  textTransform: "lowercase",
   padding: 10,
 }));
 const UncheckedButton = styled(Button)(() => ({
@@ -22,7 +21,7 @@ const UncheckedButton = styled(Button)(() => ({
   },
   height: 30,
   padding: 10,
-  textTransform: "capitalize"
+  textTransform: "lowercase"
 }));
 export default function ItemTypeButtons() {
   const [checked, setChecked] = useState("mug");

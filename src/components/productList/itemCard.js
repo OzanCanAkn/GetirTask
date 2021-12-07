@@ -10,6 +10,7 @@ const ColorButton = styled(Button)(() => ({
   "&:hover": {
     backgroundColor: "#1ea4ce",
   },
+  textTransform: "capitalize",
   height: 22,
 }));
 export default function ItemCard({ price, image, name }) {
