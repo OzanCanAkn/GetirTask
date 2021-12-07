@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import ItemCard from "./itemCard";
 import ItemTypeButtons from "./itemTypeButtons";
+import PaginationTab from "./pagination";
 export default function ProductList({ items, companiesList }) {
   console.log(items, companiesList);
   return (
@@ -42,6 +43,7 @@ export default function ProductList({ items, companiesList }) {
           <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
         </Grid>
       </Grid>
+      <PaginationTab></PaginationTab>
     </Grid>
   );
 }

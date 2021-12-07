@@ -43,7 +43,7 @@ export default function ItemTypeButtons() {
         Products
       </p>
       <Grid>
-        {checked == "mug" ? (
+        {checked === "mug" ? (
           <div>
             <CheckedButton style={{ margin: 8, marginLeft: 0 }}>
               mug
