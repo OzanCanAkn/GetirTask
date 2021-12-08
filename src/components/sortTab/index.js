@@ -39,9 +39,8 @@ export default function SortTab() {
       >
         {sortTypes.map((data, index) => {
           return (
-            <div>
+            <div key={index}>
               <label
-                class="checkbox-custom-label"
                 style={{
                   fontFamily: "Open Sans",
                   fontStyle: "normal",
@@ -49,10 +48,9 @@ export default function SortTab() {
                   fontSize: 16,
                   letterSpacing: 0.16,
                   color: "#525252",
-                  display:"flex",
-                  alignItems:"center"
+                  display: "flex",
+                  alignItems: "center",
                 }}
-                item
               >
                 <RadioButton
                   style={{ color: "#1ea4ce" }}

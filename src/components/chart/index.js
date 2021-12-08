@@ -16,9 +16,8 @@ export default function Chart() {
     setTotal(Math.round(addition * 100) / 100);
   }, [items]);
   return (
-    <Grid xs={3} style={{ paddingLeft: 12 }}>
+    <Grid xs={3} item style={{ paddingLeft: 12 }}>
       <Grid
-        item
         style={{
           backgroundColor: "#ffffff",
           border: "5px #1EA4CE solid",
