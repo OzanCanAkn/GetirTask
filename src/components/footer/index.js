@@ -6,7 +6,7 @@ import { ReactComponent as footer } from "../../assets/svg/footer.svg";
 
 export default function Footer() {
   return (
-    <Grid xs={12} item style={{width:"100%",backgroundColor:"#fafafa"}}>
+    <Grid item style={{width:"100%",height:"5vh",backgroundColor:"#fafafa"}}>
       <SvgIcon
         style={{ width: "206", height: "14", position: "absolute",backgroundColor:"#fafafa",left:0,right:0,margin:"auto"}}
         viewBox="0 0 206 14"

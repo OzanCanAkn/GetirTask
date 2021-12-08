@@ -13,7 +13,7 @@ const items = require("./constants/items.json");
 const companiesList = require("./constants/companies.json");
 function App() {
   return (
-    <div style={{ backgroundColor: "#fafafa",marginBottom:30 }}>
+    <div style={{ backgroundColor: "#fafafa" }}>
       <Header></Header>
       <Grid style={{ marginLeft: "5vw", marginRight: "5vw", marginTop: "7vh" }}>
         <Grid xs={12} container>
@@ -28,8 +28,8 @@ function App() {
           ></ProductList>
           <Chart item xs={3}></Chart>
         </Grid>
+        <Footer></Footer>
       </Grid>
-      <Footer></Footer>
     </div>
   );
 }
