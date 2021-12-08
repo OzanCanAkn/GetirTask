@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
 
 const CheckedButton = styled(Button)(() => ({
   color: "#ffffff",
@@ -21,10 +22,12 @@ const UncheckedButton = styled(Button)(() => ({
   },
   height: 30,
   padding: 10,
-  textTransform: "lowercase"
+  textTransform: "lowercase",
 }));
 export default function ItemTypeButtons() {
-  const [checked, setChecked] = useState("mug");
+  const dispatch = useDispatch();
+  const itemType = useSelector((state) => state.itemTypeReducer);
+
   return (
     <Grid>
       <p
@@ -43,12 +46,14 @@ export default function ItemTypeButtons() {
         Products
       </p>
       <Grid>
-        {checked === "mug" ? (
+        {itemType === "mug" ? (
           <div>
             <CheckedButton style={{ margin: 8, marginLeft: 0 }}>
               mug
             </CheckedButton>
-            <UncheckedButton onClick={() => setChecked("shirt")}>
+            <UncheckedButton
+              onClick={() => dispatch({ type: "CHANGE_ITEM_TYPE" })}
+            >
               shirt
             </UncheckedButton>
           </div>
@@ -56,7 +61,7 @@ export default function ItemTypeButtons() {
           <div>
             <UncheckedButton
               style={{ margin: 8, marginLeft: 0 }}
-              onClick={() => setChecked("mug")}
+              onClick={() => dispatch({ type: "CHANGE_ITEM_TYPE" })}
             >
               mug
             </UncheckedButton>
