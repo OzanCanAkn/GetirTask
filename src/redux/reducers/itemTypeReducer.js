@@ -5,8 +5,8 @@ const itemTypeReducer = (state = "mug", actions) => {
   switch (actions.type) {
     case actionTypes.CHANGE_ITEM_TYPE:
       if (state === "mug") {
-        return (newState = "shirts");
-      } else if (state === "shirts") {
+        return (newState = "shirt");
+      } else if (state === "shirt") {
         return (newState = "mug");
       }
     default:

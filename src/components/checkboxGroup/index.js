@@ -6,17 +6,13 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { TextField, Grid } from "@mui/material";
-
+import { useSelector, useDispatch } from "react-redux";
 export default function CheckboxGroup({ groupType }) {
   //groupType is definition of this component whether brands or tags | string
-  const [array, setArray] = useState({
-    All: true,
-    "coca-cola": false,
-    ferrari: false,
-    mercedes: false,
-    dominos: false,
-    "e-corp": false,
-  });
+  const itemType = useSelector((state) => state.itemTypeReducer);
+  const array = useSelector((state) => state[`${groupType}sReducer`]);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState();
   useEffect(() => {
     console.log(array);
@@ -24,10 +20,17 @@ export default function CheckboxGroup({ groupType }) {
 
   //handle checkbox change
   const handleChange = (event) => {
-    setArray({
-      ...array,
-      [event.target.name]: event.target.checked,
-    });
+    if (array?.checked?.length > 0) {
+      dispatch({
+        type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+        checked: [...array.checked, event.target.name],
+      });
+    } else {
+      dispatch({
+        type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+        checked: [event.target.name],
+      });
+    }
   };
   //handle given text change
   const handleTextChange = (event) => {
@@ -70,7 +73,7 @@ export default function CheckboxGroup({ groupType }) {
           variant="standard"
         >
           <FormGroup>
-            {Object.keys(array).map((field, key) => {
+            {array[itemType]?.map((field, key) => {
               if (name?.length > 0) {
                 if (field.toLowerCase().includes(name.toLowerCase())) {
                   return (
@@ -83,12 +86,12 @@ export default function CheckboxGroup({ groupType }) {
                         fontSize: 16,
                         display: "flex",
                         alignItems: "center",
-                        textAlign:"left"
+                        textAlign: "left",
                       }}
                       disableTypography
                       control={
                         <Checkbox
-                          checked={array[field]}
+                          checked={array.checked?.includes(field)}
                           onChange={handleChange}
                           name={field}
                         />
@@ -107,13 +110,13 @@ export default function CheckboxGroup({ groupType }) {
                       fontSize: 16,
                       display: "flex",
                       alignItems: "center",
-                      textAlign:"left"
+                      textAlign: "left",
                     }}
                     disableTypography
                     key={key}
                     control={
                       <Checkbox
-                        checked={array[field]}
+                        checked={array.checked?.includes(field)}
                         onChange={handleChange}
                         name={field}
                       />
