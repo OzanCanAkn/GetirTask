@@ -11,9 +11,8 @@ import {
 import { Grid } from "@mui/material";
 import DataHandler from "./scripts/dataHandler";
 const items = require("./constants/items.json");
-const companiesList = require("./constants/companies.json");
 function App() {
-  DataHandler({items:items,companies:companiesList})
+  DataHandler({items:items})
   return (
     <div style={{ backgroundColor: "#fafafa" }}>
       <Header></Header>
@@ -26,7 +25,6 @@ function App() {
           </Grid>
           <ProductList
             items={items}
-            companiesList={companiesList}
           ></ProductList>
           <Chart item xs={3}></Chart>
         </Grid>
