@@ -13,7 +13,7 @@ const ColorButton = styled(Button)(() => ({
   textTransform: "capitalize",
   height: 22,
 }));
-export default function ItemCard({ price, image, name }) {
+export default function ItemCard({ item}) {
   //props are price, image and name attributes of initial item
   return (
     <Grid
@@ -49,7 +49,7 @@ export default function ItemCard({ price, image, name }) {
           margin:8
         }}
       >
-        ₺ {price}
+        ₺ {item.price}
       </p>
       <p
         style={{
@@ -62,9 +62,9 @@ export default function ItemCard({ price, image, name }) {
           margin:7
         }}
       >
-        {name}
+        {item.name}
       </p>
-      <ColorButton variant="contained">Add</ColorButton>
+      <ColorButton style={{marginTop:"auto"}} variant="contained">Add</ColorButton>
     </Grid>
   );
 }

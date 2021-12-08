@@ -9,12 +9,6 @@ const DataHandler = ({ items }) => {
   const tags = useSelector((state) => state.tagsReducer);
   const brands = useSelector((state) => state.brandsReducer);
 
-    useEffect(() => {
-       console.log("tags",tags)
-    }, [tags]);
-    useEffect(() => {
-       console.log("brands",brands)
-    }, [brands]);
   useEffect(() => {
     let mugs = [];
     let shirts = [];

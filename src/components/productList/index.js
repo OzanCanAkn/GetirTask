@@ -4,8 +4,11 @@ import { Grid } from "@mui/material";
 import ItemCard from "./itemCard";
 import ItemTypeButtons from "./itemTypeButtons";
 import PaginationTab from "./pagination";
-export default function ProductList({ items, companiesList }) {
-  console.log(items, companiesList);
+import { useSelector } from "react-redux";
+
+export default function ProductList() {
+  const [pagination, setPagination] = useState(1);
+  const items = useSelector((state) => state.dataReducer);
   return (
     <Grid item xs={6} container>
       <ItemTypeButtons></ItemTypeButtons>
@@ -24,22 +27,9 @@ export default function ProductList({ items, companiesList }) {
           alignItems="flex-start"
           spacing={2}
         >
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
-          <ItemCard price="15.43" name="Perfect Ultra Awesome Mug"></ItemCard>
+          {items.slice((pagination - 1) * 16, pagination * 16).map((item) => {
+            return <ItemCard item={item}></ItemCard>;
+          })}
         </Grid>
       </Grid>
       <PaginationTab></PaginationTab>
