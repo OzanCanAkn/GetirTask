@@ -10,14 +10,23 @@ export default function ProductList() {
   const [pagination, setPagination] = useState(1);
   const items = useSelector((state) => state.dataReducer);
   return (
-    <Grid item xs={6} container>
-      <ItemTypeButtons></ItemTypeButtons>
+    <Grid
+      item
+      xs={6}
+      direction="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      container
+    >
+      <ItemTypeButtons ></ItemTypeButtons>
       <Grid
+        
         style={{
           backgroundColor: "#ffffff",
           borderRadius: 10,
           marginTop: 30,
           padding: 15,
+          width:"100%"
         }}
       >
         <Grid
@@ -32,7 +41,7 @@ export default function ProductList() {
           })}
         </Grid>
       </Grid>
-      <PaginationTab></PaginationTab>
+      <PaginationTab ></PaginationTab>
     </Grid>
   );
 }
