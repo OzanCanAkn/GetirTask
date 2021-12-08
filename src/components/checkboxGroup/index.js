@@ -21,10 +21,23 @@ export default function CheckboxGroup({ groupType }) {
   //handle checkbox change
   const handleChange = (event) => {
     if (array?.checked?.length > 0) {
-      dispatch({
-        type: `SET_CHECKED_${groupType.toUpperCase()}S`,
-        checked: [...array.checked, event.target.name],
-      });
+      if (array.checked.includes(event.target.name)) {
+        var index = array.checked.indexOf(event.target.name);
+        if (array.checked.length === 1) {
+          dispatch({
+            type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+            checked: [],
+          });
+        } else
+          dispatch({
+            type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+            checked: [array.checked.splice(index, 1)],
+          });
+      } else
+        dispatch({
+          type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+          checked: [...array.checked, event.target.name],
+        });
     } else {
       dispatch({
         type: `SET_CHECKED_${groupType.toUpperCase()}S`,
