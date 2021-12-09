@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import placeHolder from "../../assets/png/placeHolder.png";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
+import { useDispatch, useSelector } from "react-redux";
 const ColorButton = styled(Button)(() => ({
   color: "#ffffff",
   backgroundColor: "#1ea4ce",
@@ -15,14 +15,40 @@ const ColorButton = styled(Button)(() => ({
 }));
 export default function ItemCard({ item }) {
   //prop is a item from items.json
+  const dispatch = useDispatch();
+  const chartItems = useSelector((state) => state.chartReducer);
+  const [disabled, setDisabled] = useState(false);
+  const [count, setCount] = useState(0);
+
+  const findIndex = (chartItems, item) => {
+    var i = -1;
+    chartItems?.forEach((element, index) => {
+      console.log(element.slug, item.slug);
+      if (element.slug === item.slug) {
+        i = index;
+        setCount(element.count);
+      }
+    });
+    return i;
+  };
+
+  const handleClick = () => {
+    dispatch({ type: "ADD_ITEM", item: item });
+    setDisabled(true);
+  };
+
+  useEffect(() => {
+    console.log("chartItems", chartItems);
+    if (chartItems.length > 0 && disabled) {
+      if (findIndex(chartItems, item) === -1) {
+        console.log("index");
+        setDisabled(false);
+      }
+    }
+  }, [chartItems]);
+
   return (
-    <Grid
-      item
-      xs={6}
-      md={4}
-      lg={3}
-      direction="column"
-    >
+    <Grid item xs={6} md={4} lg={3} direction="column">
       <div
         item
         xs="6"
@@ -44,7 +70,7 @@ export default function ItemCard({ item }) {
         item
         container
         direction="column"
-        style={{ height: "100%",flex:"1" }}
+        style={{ height: "100%", flex: "1" }}
         alignItems="space-between"
         justifyContent="space-between"
       >
@@ -69,12 +95,20 @@ export default function ItemCard({ item }) {
             lineHeight: 1.6,
             color: " #191919",
             margin: 7,
-            minHeight:"3rem"
+            minHeight: "3rem",
           }}
         >
           {item.name}
         </p>
-        <ColorButton variant="contained">Add</ColorButton>
+        <ColorButton
+          disabled={disabled}
+          onClick={handleClick}
+          variant="contained"
+        >
+          {disabled
+            ? `Added ${count}Pcs`
+            : "Add"}
+        </ColorButton>
       </Grid>
     </Grid>
   );
