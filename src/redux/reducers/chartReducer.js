@@ -3,7 +3,6 @@ import * as actionTypes from "../actions/actionTypes";
 const findIndex = (chartItems, item) => {
   var i = -1;
   chartItems?.forEach((element, index) => {
-    console.log(element.slug, item.slug);
     if (element.slug === item.slug) {
       i = index;
     }

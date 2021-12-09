@@ -32,16 +32,12 @@ export default function CheckboxGroup({ groupType }) {
       if (array.checked.includes(event.target.name)) {
         var index = array.checked.indexOf(event.target.name);
         if (array.checked.length === 1) {
-          console.log(1);
-          console.log(array.checked, index);
           setCheckedList([]);
           dispatch({
             type: `SET_CHECKED_${groupType.toUpperCase()}S`,
             checked: [],
           });
         } else {
-          console.log(3);
-          console.log(array.checked, index);
           var arr = array.checked;
           arr.splice(index, 1);
           setCheckedList(arr);
@@ -51,7 +47,6 @@ export default function CheckboxGroup({ groupType }) {
           });
         }
       } else {
-        console.log([...array.checked, event.target.name]);
         setCheckedList([...array.checked, event.target.name]);
         dispatch({
           type: `SET_CHECKED_${groupType.toUpperCase()}S`,

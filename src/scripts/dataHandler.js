@@ -32,7 +32,6 @@ const DataHandler = ({ items }) => {
     dispatch({ type: "SET_TAGS", list: tagTypes });
     dispatch({ type: "SET_BRANDS", list: brandTypes });
     if (itemType === "mug") {
-      console.log("type", itemType);
       dispatch({ type: "SET_DATA", data: mugs });
     } else {
       dispatch({ type: "SET_DATA", data: shirts });
@@ -63,7 +62,6 @@ const DataHandler = ({ items }) => {
             tags.checked?.some((r) => datum.tags.indexOf(r) >= 0)
           );
         }
-        console.log(sortType);
         if (sortType == 1) {
           data = data.sort((b, a) => a.price - b.price);
         } else if (sortType == 0) {

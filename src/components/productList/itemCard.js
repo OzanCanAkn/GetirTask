@@ -25,7 +25,6 @@ export default function ItemCard({ item }) {
   const findIndex = (chartItems, item) => {
     var i = -1;
     chartItems?.forEach((element, index) => {
-      console.log(element.slug, item.slug);
       if (element.slug === item.slug) {
         i = index;
         setCount(element.count);
@@ -42,7 +41,6 @@ export default function ItemCard({ item }) {
 
   // set added or not to chart list
   useEffect(() => {
-    console.log("chartItems", chartItems);
     if (chartItems.length > 0 && disabled) {
       if (findIndex(chartItems, item) === -1) {
         setDisabled(false);

@@ -12,7 +12,6 @@ export default function Chart() {
       addition = addition + item.price * item.count;
     });
     setTotal(Math.round(addition * 100) / 100);
-    console.log(items);
   }, [items]);
   return (
     <Grid xs={3} item style={{ paddingLeft: 12 }}>
