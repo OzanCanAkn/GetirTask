@@ -40,7 +40,6 @@ export default function ItemCard({ item }) {
     setDisabled(true);
   };
 
-
   // set added or not to chart list
   useEffect(() => {
     console.log("chartItems", chartItems);
@@ -52,6 +51,8 @@ export default function ItemCard({ item }) {
       if (findIndex(chartItems, item) != -1) {
         setDisabled(true);
       }
+    } else if (chartItems.length === 0) {
+      setDisabled(false);
     }
   }, [chartItems, dataChange]);
 
