@@ -68,6 +68,10 @@ const DataHandler = ({ items }) => {
           data = data.sort((b, a) => a.price - b.price);
         } else if (sortType == 0) {
           data = data.sort((a, b) => a.price - b.price);
+        }if (sortType == 3) {
+          data = data.sort((b, a) => a.added - b.added);
+        } else if (sortType == 2) {
+          data = data.sort((a, b) => a.added - b.added);
         }
 
         dispatch({ type: "SET_DATA", data: [...data] });
