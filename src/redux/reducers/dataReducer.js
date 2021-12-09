@@ -4,7 +4,8 @@ const dataReducer = (state = [], actions) => {
   let newState;
   switch (actions.type) {
     case actionTypes.SET_DATA:
-      return (newState = actions?.data);
+      console.log(actions.data)
+      return ( actions?.data);
     default:
       return state;
   }

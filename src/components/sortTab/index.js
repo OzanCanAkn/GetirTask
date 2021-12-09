@@ -1,8 +1,12 @@
 import "./sortTab.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { RadioButton } from "./RadioButton";
+import { useSelector, useDispatch } from "react-redux";
+
 export default function SortTab() {
+  const indexFromRedux = useSelector((state) => state.sortReducer);
+  const dispatch = useDispatch();
   const sortTypes = [
     "Price low to high",
     "Price high to low",
@@ -10,6 +14,19 @@ export default function SortTab() {
     "Old to new",
   ];
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  useEffect(() => {
+    dispatch({
+      type: `SET_SORT_TYPE`,
+      sortTypeIndex: selectedIndex,
+    });
+  }, [selectedIndex]);
+
+  useEffect(() => {
+    if (indexFromRedux != selectedIndex) {
+      setSelectedIndex(indexFromRedux);
+    }
+  }, [indexFromRedux]);
   const handleChange = (event) => {
     setSelectedIndex(event.target.id);
   };

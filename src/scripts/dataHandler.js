@@ -11,50 +11,6 @@ const DataHandler = ({ items }) => {
   const itemType = useSelector((state) => state.itemTypeReducer);
   const sortType = useSelector((state) => state.sortReducer);
   useEffect(() => {
-    console.log("sortedData", tags, brands, itemType);
-    if ((tags, brands, itemType)) {
-      let data;
-      if (itemType == "mug") data = mugs;
-      else data = shirts;
-      console.log(data, itemType,tags);
-      if (data) {
-        if (brands.checked?.length > 0 && tags.checked?.length > 0) {
-          //using array.object.filter for filtering items according to tags and brands
-          data = data?.filter(
-            (datum) =>
-              brands.checked?.includes(datum.manufacturer) &&
-              tags.checked?.some((r) => datum.tags.indexOf(r) >= 0)
-          );
-        } else if (brands.checked?.length > 0) {
-          data = data?.filter((datum) =>
-            brands.checked?.includes(datum.manufacturer)
-          );
-        } else if (tags.checked?.length > 0) {
-          data = data?.filter((datum) =>
-            tags.checked?.some((r) => datum.tags.indexOf(r) >= 0)
-          );
-        }
-        console.log(sortType);
-        switch (sortType) {
-          case 0: {
-            data = data.sort((b, a) => a.price - b.price);
-          }
-          case 1: {
-            data = data.sort((a, b) => a.price - b.price);
-          }
-          case 2: {
-          }
-          case 3: {
-          }
-          default:
-            break;
-        }
-        console.log("sortedData", data);
-        dispatch({ type: "SET_DATA", data: data });
-      }
-    }
-  }, [tags, brands, itemType, sortType]);
-  useEffect(() => {
     //finds mugs array,shirts array, unique brand types, unique tag types and sends them to reducers
     let mugs = [];
     let shirts = [];
@@ -84,6 +40,42 @@ const DataHandler = ({ items }) => {
     setMugs(mugs);
     setShirts(shirts);
   }, []);
+  useEffect(() => {
+    console.log("start to filter and sort", tags, brands, itemType, sortType);
+    if (tags && brands && itemType && (sortType == 0 || sortType)) {
+      let data;
+      if (itemType == "mug") data = mugs;
+      else data = shirts;
+      if (data) {
+        if (brands.checked?.length > 0 && tags.checked?.length > 0) {
+          //using array.object.filter for filtering items according to tags and brands
+          data = data?.filter(
+            (datum) =>
+              brands.checked?.includes(datum.manufacturer) &&
+              tags.checked?.some((r) => datum.tags.indexOf(r) >= 0)
+          );
+        } else if (brands.checked?.length > 0) {
+          data = data?.filter((datum) =>
+            brands.checked?.includes(datum.manufacturer)
+          );
+        } else if (tags.checked?.length > 0) {
+          data = data?.filter((datum) =>
+            tags.checked?.some((r) => datum.tags.indexOf(r) >= 0)
+          );
+        }
+        console.log(sortType);
+        if (sortType == 1) {
+          console.log(200);
+          data = data.sort((b, a) => a.price - b.price);
+        } else if (sortType == 0) {
+          console.log(100);
+          data = data.sort((a, b) => a.price - b.price);
+        }
+
+        dispatch({ type: "SET_DATA", data: [...data] });
+      }
+    }
+  }, [tags, brands, itemType, sortType]);
 };
 
 export default DataHandler;
