@@ -24,20 +24,29 @@ export default function CheckboxGroup({ groupType }) {
       if (array.checked.includes(event.target.name)) {
         var index = array.checked.indexOf(event.target.name);
         if (array.checked.length === 1) {
+          console.log(1);
+          console.log(array.checked, index);
           dispatch({
             type: `SET_CHECKED_${groupType.toUpperCase()}S`,
             checked: [],
           });
-        } else
+        } else {
+          console.log(3);
+          console.log(array.checked, index);
+          var arr = array.checked;
+          arr.splice(index, 1);
           dispatch({
             type: `SET_CHECKED_${groupType.toUpperCase()}S`,
-            checked: [array.checked.splice(index, 1)],
+            checked: arr,
           });
-      } else
+        }
+      } else {
+        console.log(array.checked, 9);
         dispatch({
           type: `SET_CHECKED_${groupType.toUpperCase()}S`,
           checked: [...array.checked, event.target.name],
         });
+      }
     } else {
       dispatch({
         type: `SET_CHECKED_${groupType.toUpperCase()}S`,

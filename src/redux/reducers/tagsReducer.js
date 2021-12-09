@@ -6,6 +6,7 @@ const tagsReducer = (state = { mug: [], shirt: [] ,checked:[]}, actions) => {
     case actionTypes.SET_TAGS:
       return (newState = actions.list);
     case actionTypes.SET_CHECKED_TAGS:
+      console.log("inreducer",actions)
       return (newState = {
         ...state,
         checked: actions.checked,
