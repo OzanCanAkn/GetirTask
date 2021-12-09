@@ -3,8 +3,24 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Grid } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 export default function Counter({ item }) {
+  const dispatch = useDispatch();
+
+  const handleIncrease = () => {
+    dispatch({
+      type: `INCREASE_ITEM_COUNT`,
+      item: item,
+    });
+  };
+
+  const handleDecrease = () => {
+    dispatch({
+      type: `DECREASE_ITEM_COUNT`,
+      item: item,
+    });
+  };
   return (
     <Grid
       container
@@ -14,7 +30,7 @@ export default function Counter({ item }) {
       justifyContent="flex-end"
       direction="row"
     >
-      <IconButton color="primary" item>
+      <IconButton onClick={handleDecrease} color="primary" item>
         <RemoveIcon />
       </IconButton>
       <div
@@ -31,7 +47,7 @@ export default function Counter({ item }) {
           {item.count}
         </p>
       </div>
-      <IconButton color="primary" item>
+      <IconButton onClick={handleIncrease} color="primary" item>
         <AddIcon />
       </IconButton>
     </Grid>

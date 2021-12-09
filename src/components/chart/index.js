@@ -2,18 +2,17 @@ import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Counter from "./counter";
 import ChartTotal from "./chartTotal";
+import {  useSelector } from "react-redux";
 export default function Chart() {
-  const [items, setItems] = useState([
-    { name: "perfect mug", price: 15.83, count: 1 },
-    { name: "perfect table", price: 15.23, count: 2 },
-  ]);
+  const items = useSelector((state) => state.chartReducer);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     let addition = 0;
     items.map((item) => {
-      addition = addition + item.price;
+      addition = addition + item.price*item.count;
     });
     setTotal(Math.round(addition * 100) / 100);
+    console.log(items)
   }, [items]);
   return (
     <Grid xs={3} item style={{ paddingLeft: 12 }}>
