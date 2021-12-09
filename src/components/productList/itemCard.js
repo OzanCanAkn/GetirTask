@@ -17,9 +17,11 @@ export default function ItemCard({ item }) {
   //prop is a item from items.json
   const dispatch = useDispatch();
   const chartItems = useSelector((state) => state.chartReducer);
+  const dataChange = useSelector((state) => state.dataReducer);
   const [disabled, setDisabled] = useState(false);
   const [count, setCount] = useState(0);
 
+  //find index of item in the char list
   const findIndex = (chartItems, item) => {
     var i = -1;
     chartItems?.forEach((element, index) => {
@@ -32,20 +34,26 @@ export default function ItemCard({ item }) {
     return i;
   };
 
+  //add to chart
   const handleClick = () => {
     dispatch({ type: "ADD_ITEM", item: item });
     setDisabled(true);
   };
 
+
+  // set added or not to chart list
   useEffect(() => {
     console.log("chartItems", chartItems);
     if (chartItems.length > 0 && disabled) {
       if (findIndex(chartItems, item) === -1) {
-        console.log("index");
         setDisabled(false);
       }
+    } else if (chartItems.length > 0 && !disabled) {
+      if (findIndex(chartItems, item) != -1) {
+        setDisabled(true);
+      }
     }
-  }, [chartItems]);
+  }, [chartItems, dataChange]);
 
   return (
     <Grid item xs={6} md={4} lg={3} direction="column">
@@ -105,9 +113,7 @@ export default function ItemCard({ item }) {
           onClick={handleClick}
           variant="contained"
         >
-          {disabled
-            ? `Added ${count}Pcs`
-            : "Add"}
+          {disabled ? `Added ${count}Pcs` : "Add"}
         </ColorButton>
       </Grid>
     </Grid>
