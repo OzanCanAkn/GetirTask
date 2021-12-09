@@ -1,5 +1,5 @@
 import "./productList.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import ItemCard from "./itemCard";
 import ItemTypeButtons from "./itemTypeButtons";
@@ -9,6 +9,11 @@ import { useSelector } from "react-redux";
 export default function ProductList() {
   const [pagination, setPagination] = useState(1);
   const items = useSelector((state) => state.dataReducer);
+  useEffect(() => {
+    if (pagination != 1) {
+      setPagination(1);
+    }
+  }, [items]);
   return (
     <Grid
       item
@@ -18,15 +23,14 @@ export default function ProductList() {
       justifyContent="flex-start"
       container
     >
-      <ItemTypeButtons ></ItemTypeButtons>
+      <ItemTypeButtons></ItemTypeButtons>
       <Grid
-        
         style={{
           backgroundColor: "#ffffff",
           borderRadius: 10,
           marginTop: 30,
           padding: 15,
-          width:"100%"
+          width: "100%",
         }}
       >
         <Grid
@@ -41,7 +45,10 @@ export default function ProductList() {
           })}
         </Grid>
       </Grid>
-      <PaginationTab count={Math.ceil(items.length/16)} setPagination={setPagination}></PaginationTab>
+      <PaginationTab
+        count={Math.ceil(items.length / 16)}
+        setPagination={setPagination}
+      ></PaginationTab>
     </Grid>
   );
 }
