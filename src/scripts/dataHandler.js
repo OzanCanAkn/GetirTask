@@ -65,10 +65,8 @@ const DataHandler = ({ items }) => {
         }
         console.log(sortType);
         if (sortType == 1) {
-          console.log(200);
           data = data.sort((b, a) => a.price - b.price);
         } else if (sortType == 0) {
-          console.log(100);
           data = data.sort((a, b) => a.price - b.price);
         }
 

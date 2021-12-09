@@ -12,12 +12,20 @@ export default function CheckboxGroup({ groupType }) {
   const itemType = useSelector((state) => state.itemTypeReducer);
   const array = useSelector((state) => state[`${groupType}sReducer`]);
   const dispatch = useDispatch();
-
   const [name, setName] = useState();
+  const [checkedList, setCheckedList] = useState([]);
   useEffect(() => {
-    console.log(array);
-  }, [array]);
-
+    if (checkedList?.length > 0) {
+      handleChangeAll()
+    }
+  }, [itemType]);
+  const handleChangeAll = () => {
+    setCheckedList([]);
+    dispatch({
+      type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+      checked: [],
+    });
+  };
   //handle checkbox change
   const handleChange = (event) => {
     if (array?.checked?.length > 0) {
@@ -26,6 +34,7 @@ export default function CheckboxGroup({ groupType }) {
         if (array.checked.length === 1) {
           console.log(1);
           console.log(array.checked, index);
+          setCheckedList([]);
           dispatch({
             type: `SET_CHECKED_${groupType.toUpperCase()}S`,
             checked: [],
@@ -35,19 +44,22 @@ export default function CheckboxGroup({ groupType }) {
           console.log(array.checked, index);
           var arr = array.checked;
           arr.splice(index, 1);
+          setCheckedList(arr);
           dispatch({
             type: `SET_CHECKED_${groupType.toUpperCase()}S`,
             checked: arr,
           });
         }
       } else {
-        console.log(array.checked, 9);
+        console.log([...array.checked, event.target.name]);
+        setCheckedList([...array.checked, event.target.name]);
         dispatch({
           type: `SET_CHECKED_${groupType.toUpperCase()}S`,
           checked: [...array.checked, event.target.name],
         });
       }
     } else {
+      setCheckedList([event.target.name]);
       dispatch({
         type: `SET_CHECKED_${groupType.toUpperCase()}S`,
         checked: [event.target.name],
@@ -95,6 +107,26 @@ export default function CheckboxGroup({ groupType }) {
           variant="standard"
         >
           <FormGroup>
+            <FormControlLabel
+              style={{
+                fontFamily: "Open Sans",
+                fontStyle: "normal",
+                fontWeight: "normal",
+                fontSize: 16,
+                display: "flex",
+                alignItems: "center",
+                textAlign: "left",
+              }}
+              disableTypography
+              control={
+                <Checkbox
+                  checked={checkedList?.length < 1}
+                  onChange={handleChangeAll}
+                  name={"All"}
+                />
+              }
+              label={"All"}
+            />
             {array[itemType]?.map((field, key) => {
               if (name?.length > 0) {
                 if (field.toLowerCase().includes(name.toLowerCase())) {
@@ -113,7 +145,7 @@ export default function CheckboxGroup({ groupType }) {
                       disableTypography
                       control={
                         <Checkbox
-                          checked={array.checked?.includes(field)}
+                          checked={checkedList?.includes(field) ? 1 : 0}
                           onChange={handleChange}
                           name={field}
                         />
@@ -138,7 +170,7 @@ export default function CheckboxGroup({ groupType }) {
                     key={key}
                     control={
                       <Checkbox
-                        checked={array.checked?.includes(field)}
+                        checked={checkedList?.includes(field) ? 1 : 0}
                         onChange={handleChange}
                         name={field}
                       />
