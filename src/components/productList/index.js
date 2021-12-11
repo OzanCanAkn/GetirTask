@@ -5,7 +5,6 @@ import ItemCard from "./itemCard";
 import ItemTypeButtons from "./itemTypeButtons";
 import PaginationTab from "./pagination";
 import { useSelector } from "react-redux";
-
 export default function ProductList({setChartOpen,setFilterOpen}) {
   const [pagination, setPagination] = useState(1);
   const items = useSelector((state) => state.dataReducer);

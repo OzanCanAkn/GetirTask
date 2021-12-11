@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,Fragment} from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./checkboxGroup.css";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -9,19 +9,19 @@ import { useSelector, useDispatch } from "react-redux";
 export default function CheckboxGroup({ groupType }) {
   //groupType is definition of this component whether brands or tags | string
   const itemType = useSelector((state) => state.itemTypeReducer);
-  const array = useSelector((state) => state[`${groupType}sReducer`]);
+  const array = useSelector((state) => state[`tagsReducer`]);
   const dispatch = useDispatch();
   const [name, setName] = useState();
   const [checkedList, setCheckedList] = useState([]);
   useEffect(() => {
     if (checkedList?.length > 0) {
-      handleChangeAll()
+      handleChangeAll();
     }
   }, [itemType]);
   const handleChangeAll = () => {
     setCheckedList([]);
     dispatch({
-      type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+      type: `SET_CHECKED_TAGS`,
       checked: [],
     });
   };
@@ -33,7 +33,7 @@ export default function CheckboxGroup({ groupType }) {
         if (array.checked.length === 1) {
           setCheckedList([]);
           dispatch({
-            type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+            type: `SET_CHECKED_TAGS`,
             checked: [],
           });
         } else {
@@ -41,21 +41,21 @@ export default function CheckboxGroup({ groupType }) {
           arr.splice(index, 1);
           setCheckedList(arr);
           dispatch({
-            type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+            type: `SET_CHECKED_TAGS`,
             checked: arr,
           });
         }
       } else {
         setCheckedList([...array.checked, event.target.name]);
         dispatch({
-          type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+          type: `SET_CHECKED_TAGS`,
           checked: [...array.checked, event.target.name],
         });
       }
     } else {
       setCheckedList([event.target.name]);
       dispatch({
-        type: `SET_CHECKED_${groupType.toUpperCase()}S`,
+        type: `SET_CHECKED_TAGS`,
         checked: [event.target.name],
       });
     }
@@ -64,7 +64,7 @@ export default function CheckboxGroup({ groupType }) {
   const handleTextChange = (event) => {
     setName(event.target.value);
   };
-
+  console.log("array", array);
   return (
     <Fragment>
       <div
@@ -76,7 +76,7 @@ export default function CheckboxGroup({ groupType }) {
           fontWeight: 600,
           fontSize: 13,
         }}
-      >{`${groupType[0].toUpperCase() + groupType.substring(1)}s`}</div>
+      >{`Tags`}</div>
       <Grid
         direction="column"
         style={{
@@ -90,7 +90,7 @@ export default function CheckboxGroup({ groupType }) {
       >
         <TextField
           id="outlined-field"
-          label={`Search ${groupType}`}
+          label={`Search tag`}
           value={name}
           onChange={handleTextChange}
           style={{ color: "#e0e0e0", marginBottom: 16 }}
@@ -121,7 +121,7 @@ export default function CheckboxGroup({ groupType }) {
               }
               label={"All"}
             />
-            {array[itemType]?.map((field, key) => {
+            {Object.keys(array[itemType])?.map((field, key) => {
               if (name?.length > 0) {
                 if (field.toLowerCase().includes(name.toLowerCase())) {
                   return (
@@ -144,7 +144,7 @@ export default function CheckboxGroup({ groupType }) {
                           name={field}
                         />
                       }
-                      label={field}
+                      label={`${field} (${array[itemType][field].count})`}
                     />
                   );
                 }
@@ -169,7 +169,7 @@ export default function CheckboxGroup({ groupType }) {
                         name={field}
                       />
                     }
-                    label={field}
+                    label={`${field} (${array[itemType][field].count})`}
                   />
                 );
               }
