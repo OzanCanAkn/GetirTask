@@ -16,7 +16,7 @@ const DataHandler = ({ items }) => {
     let shirts = [];
     let brandTypes = { mug: [], shirt: [] };
     let tagTypes = { mug: [], shirt: [] };
-    items.forEach((item) => {
+    items.forEach((item) => {//pops unwanted tagged or branded items
       if (item?.itemType === "mug") {
         mugs.push(item);
         brandTypes.mug = [...new Set([...brandTypes.mug, item?.manufacturer])];
