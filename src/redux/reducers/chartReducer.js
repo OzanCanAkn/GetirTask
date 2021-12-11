@@ -11,24 +11,23 @@ const findIndex = (chartItems, item) => {
 };
 
 const chartReducer = (state = [], actions) => {
-  let newState;
   switch (actions.type) {
     case actionTypes.ADD_ITEM:
       if (state.length > 0)
-        return (newState = [...state, { ...actions.item, count: 1 }]);
-      else return (newState = [{ ...actions.item, count: 1 }]);
+        return ( [...state, { ...actions.item, count: 1 }]);
+      else return ( [{ ...actions.item, count: 1 }]);
     case actionTypes.INCREASE_ITEM_COUNT: {
       let index = findIndex(state, actions.item);
-      if (index != -1) {
+      if (index !== -1) {
         let arr = state;
         arr[index].count++;
         return [...arr];
       }
-      return (newState = state);
+      return ( state);
     }
     case actionTypes.DECREASE_ITEM_COUNT:
       let index = findIndex(state, actions.item);
-      if (index != -1) {
+      if (index !== -1) {
         let arr = state;
         if (arr[index].count === 1) {
           arr.splice(index, 1);
@@ -36,7 +35,7 @@ const chartReducer = (state = [], actions) => {
 
         return [...arr];
       }
-      return (newState = state);
+      return ( state);
     default:
       return state;
   }

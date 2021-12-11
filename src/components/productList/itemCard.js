@@ -46,7 +46,7 @@ export default function ItemCard({ item }) {
         setDisabled(false);
       }
     } else if (chartItems.length > 0 && !disabled) {
-      if (findIndex(chartItems, item) != -1) {
+      if (findIndex(chartItems, item) !== -1) {
         setDisabled(true);
       }
     } else if (chartItems.length === 0) {
@@ -66,6 +66,7 @@ export default function ItemCard({ item }) {
         }}
       >
         <img
+          alt="filler"
           style={{
             width: "100%",
           }}

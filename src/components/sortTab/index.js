@@ -23,7 +23,7 @@ export default function SortTab() {
   }, [selectedIndex]);
 
   useEffect(() => {
-    if (indexFromRedux != selectedIndex) {
+    if (indexFromRedux !== selectedIndex) {
       setSelectedIndex(indexFromRedux);
     }
   }, [indexFromRedux]);

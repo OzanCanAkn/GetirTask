@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DataHandler = ({ items }) => {
@@ -16,7 +16,7 @@ const DataHandler = ({ items }) => {
     let shirts = [];
     let brandTypes = { mug: [], shirt: [] };
     let tagTypes = { mug: [], shirt: [] };
-    items.map((item) => {
+    items.forEach((item) => {
       if (item?.itemType === "mug") {
         mugs.push(item);
         brandTypes.mug = [...new Set([...brandTypes.mug, item?.manufacturer])];

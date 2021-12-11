@@ -48,6 +48,7 @@ export default function ProductList() {
       <PaginationTab
         count={Math.ceil(items.length / 16)}
         setPagination={setPagination}
+        pagination={pagination}
       ></PaginationTab>
     </Grid>
   );

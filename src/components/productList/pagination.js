@@ -5,9 +5,10 @@ import PaginationItem from "@mui/material/PaginationItem";
 import { ReactComponent as prev } from "../../assets/svg/prev.svg";
 import { ReactComponent as next } from "../../assets/svg/next.svg";
 
-export default function PaginationTab({ count, setPagination }) {
+export default function PaginationTab({ count,pagination, setPagination }) {
   //count=page count,
   //setPagination setting pagination for productList.js's state
+  //pagination is initial page number
   const handleChange = (event, value) => {
     setPagination(value);
   };
@@ -22,11 +23,14 @@ export default function PaginationTab({ count, setPagination }) {
       }}
     >
       <Pagination
-        boundaryCount={2}
+        boundaryCount={4}
+        siblingCount={0}
         count={count}
         color="primary"
         shape="rounded"
+        size="small"
         onChange={handleChange}
+        page={pagination}
         renderItem={(item) => (
           <PaginationItem
             components={{ previous: prev, next: next }}

@@ -1,12 +1,11 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const tagsReducer = (state = { mug: [], shirt: [] ,checked:[]}, actions) => {
-  let newState;
   switch (actions.type) {
     case actionTypes.SET_TAGS:
-      return (newState = actions.list);
+      return ( actions.list);
     case actionTypes.SET_CHECKED_TAGS:
-      return (newState = {
+      return ( {
         ...state,
         checked: actions.checked,
       });
