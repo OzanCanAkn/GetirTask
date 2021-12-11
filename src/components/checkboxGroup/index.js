@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,Fragment} from "react";
 import "./checkboxGroup.css";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
@@ -66,7 +66,7 @@ export default function CheckboxGroup({ groupType }) {
   };
 
   return (
-    <div>
+    <Fragment>
       <div
         style={{
           margin: 8,
@@ -177,6 +177,6 @@ export default function CheckboxGroup({ groupType }) {
           </FormGroup>
         </FormControl>
       </Grid>
-    </div>
+    </Fragment>
   );
 }

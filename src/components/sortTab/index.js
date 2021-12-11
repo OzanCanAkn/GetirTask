@@ -1,5 +1,5 @@
 import "./sortTab.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import { Grid } from "@mui/material";
 import { RadioButton } from "./RadioButton";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,7 +31,7 @@ export default function SortTab() {
     setSelectedIndex(event.target.id);
   };
   return (
-    <Grid item>
+    <Fragment item>
       <div
         style={{
           margin: 8,
@@ -82,6 +82,6 @@ export default function SortTab() {
           );
         })}
       </Grid>
-    </Grid>
+    </Fragment>
   );
 }

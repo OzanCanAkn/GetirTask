@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React,{Fragment} from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ export default function ItemTypeButtons() {
   const itemType = useSelector((state) => state.itemTypeReducer);
 
   return (
-    <Grid>
+    <Fragment>
       <p
         style={{
           fontFamily: "Open Sans",
@@ -69,6 +69,6 @@ export default function ItemTypeButtons() {
           </div>
         )}
       </Grid>
-    </Grid>
+    </Fragment>
   );
 }
