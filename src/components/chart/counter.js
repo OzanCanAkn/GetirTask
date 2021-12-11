@@ -25,10 +25,12 @@ export default function Counter({ item }) {
     <Grid
       container
       item
-      xs={7}
       alignItems="center"
       justifyContent="flex-end"
       direction="row"
+      md={12}
+      xs={7}
+      lg={7}
     >
       <IconButton onClick={handleDecrease} color="primary" item>
         <RemoveIcon />

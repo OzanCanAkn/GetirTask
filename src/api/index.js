@@ -74,6 +74,7 @@ const DataHandler = () => {
       }
     }
   }, [items, map]);
+  
   useEffect(() => {
     let start = performance.now();
     console.log(brands.mug);

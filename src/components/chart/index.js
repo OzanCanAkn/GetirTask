@@ -26,11 +26,17 @@ export default function Chart() {
       >
         <Grid style={{ marginLeft: 20, marginRight: 20 }}>
           {items.length === 0 ? (
-            <p style={{paddingBottom:20,textAlign:"center", borderBottom: "1px solid #f6f6f6" }}>
+            <p
+              style={{
+                paddingBottom: 20,
+                textAlign: "center",
+                borderBottom: "1px solid #f6f6f6",
+              }}
+            >
               Your Chart is Empty
             </p>
           ) : (
-            <div></div>
+            <></>
           )}
           {items.map((item, key) => {
             return (
@@ -42,7 +48,7 @@ export default function Chart() {
                 alignItems="space-between"
                 style={{ borderBottom: "1px solid #f6f6f6" }}
               >
-                <Grid item xs={5}>
+                <Grid item lg={5} md={12} xs={5}>
                   <p
                     style={{
                       fontFamily: "Open Sans",

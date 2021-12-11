@@ -6,6 +6,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { StyledCheckbox } from "./styledCheckbox";
 import { TextField, Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 export default function BrandsCheckbox({ groupType }) {
   //groupType is definition of this component whether brands or tags | string
   const itemType = useSelector((state) => state.itemTypeReducer);
@@ -122,66 +124,76 @@ export default function BrandsCheckbox({ groupType }) {
               }
               label={"All"}
             />
-            {Object.keys(array[itemType]).length > 0 ? (
-              Object.keys(array[itemType]).map((field, key) => {
-                if (name?.length > 0) {
-                  if (field.toLowerCase().includes(name.toLowerCase())) {
-                    return (
-                      <FormControlLabel
-                        key={key}
-                        style={{
-                          fontFamily: "Open Sans",
-                          fontStyle: "normal",
-                          fontWeight: "normal",
-                          fontSize: 16,
-                          letterSpacing: 0.16,
-                          color: "#525252",
-                          display: "flex",
-                          alignItems: "center",
-                          textAlign: "left",
-                        }}
-                        disableTypography
-                        control={
-                          <StyledCheckbox
-                            checked={checkedList?.includes(field) ? 1 : 0}
-                            onChange={handleChange}
-                            name={field}
-                          />
-                        }
-                        label={`${array[itemType][field].name} (${array[itemType][field].count})`}
-                      />
-                    );
-                  }
-                } else {
-                  return (
-                    <FormControlLabel
-                      style={{
-                        fontFamily: "Open Sans",
-                        fontStyle: "normal",
-                        fontWeight: "normal",
-                        fontSize: 16,
-                        letterSpacing: 0.16,
-                        color: "#525252",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "left",
-                      }}
-                      disableTypography
-                      key={key}
-                      control={
-                        <StyledCheckbox
-                          checked={checkedList?.includes(field) ? 1 : 0}
-                          onChange={handleChange}
-                          name={field}
-                        />
-                      }
-                      label={`${array[itemType][field].name} (${array[itemType][field].count})`}
-                    />
-                  );
-                }
-              })
+            {array.mug.length === 0 ? (
+              <Box sx={{ width: 100 }}>
+                <Skeleton />
+                <Skeleton animation="wave" />
+                <Skeleton animation={false} />
+              </Box>
             ) : (
-              <></>
+              <>
+                {Object.keys(array[itemType]).length > 0 ? (
+                  Object.keys(array[itemType]).map((field, key) => {
+                    if (name?.length > 0) {
+                      if (field.toLowerCase().includes(name.toLowerCase())) {
+                        return (
+                          <FormControlLabel
+                            key={key}
+                            style={{
+                              fontFamily: "Open Sans",
+                              fontStyle: "normal",
+                              fontWeight: "normal",
+                              fontSize: 16,
+                              letterSpacing: 0.16,
+                              color: "#525252",
+                              display: "flex",
+                              alignItems: "center",
+                              textAlign: "left",
+                            }}
+                            disableTypography
+                            control={
+                              <StyledCheckbox
+                                checked={checkedList?.includes(field) ? 1 : 0}
+                                onChange={handleChange}
+                                name={field}
+                              />
+                            }
+                            label={`${array[itemType][field].name} (${array[itemType][field].count})`}
+                          />
+                        );
+                      }
+                    } else {
+                      return (
+                        <FormControlLabel
+                          style={{
+                            fontFamily: "Open Sans",
+                            fontStyle: "normal",
+                            fontWeight: "normal",
+                            fontSize: 16,
+                            letterSpacing: 0.16,
+                            color: "#525252",
+                            display: "flex",
+                            alignItems: "center",
+                            textAlign: "left",
+                          }}
+                          disableTypography
+                          key={key}
+                          control={
+                            <StyledCheckbox
+                              checked={checkedList?.includes(field) ? 1 : 0}
+                              onChange={handleChange}
+                              name={field}
+                            />
+                          }
+                          label={`${array[itemType][field].name} (${array[itemType][field].count})`}
+                        />
+                      );
+                    }
+                  })
+                ) : (
+                  <></>
+                )}
+              </>
             )}
           </FormGroup>
         </FormControl>
