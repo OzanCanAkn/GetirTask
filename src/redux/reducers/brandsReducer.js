@@ -5,6 +5,7 @@ const brandsReducer = (state = { mug: [], shirt: [] }, actions) => {
     case actionTypes.SET_BRANDS:
       return (actions.list);
     case actionTypes.SET_CHECKED_BRANDS:
+      console.log(actions.checked)
       return ( {
         ...state,
         checked: actions.checked,

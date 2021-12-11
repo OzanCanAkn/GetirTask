@@ -4,4 +4,5 @@ import CheckboxGroup from "./checkboxGroup";
 import SortTab from "./sortTab";
 import Chart from "./chart";
 import Footer from "./footer";
-export {ProductList,Header,CheckboxGroup,SortTab,Chart,Footer};
+import BrandsCheckbox from "./checkboxGroup/brandsCheckbox";
+export {ProductList,Header,CheckboxGroup,SortTab,Chart,Footer,BrandsCheckbox};

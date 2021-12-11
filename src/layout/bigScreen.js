@@ -6,8 +6,10 @@ import {
   SortTab,
   Chart,
   Footer,
+  BrandsCheckbox,
 } from "../components";
 import { Grid } from "@mui/material";
+
 export default function BigScreen() {
   return (
     <div style={{ backgroundColor: "#fafafa" }}>
@@ -16,8 +18,8 @@ export default function BigScreen() {
         <Grid container>
           <Grid xs={3} style={{ paddingRight: 16 }} item id="filtersContainer">
             <SortTab></SortTab>
-            <CheckboxGroup groupType="brand"></CheckboxGroup>
-            <CheckboxGroup groupType="tag"></CheckboxGroup>
+            <BrandsCheckbox></BrandsCheckbox>
+            <CheckboxGroup></CheckboxGroup>
           </Grid>
           <ProductList></ProductList>
           <Chart item xs={3}></Chart>
