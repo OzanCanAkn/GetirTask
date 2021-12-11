@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 const CheckedButton = styled(Button)(() => ({
   color: "#ffffff",
   backgroundColor: "#1ea4ce",
@@ -14,6 +15,18 @@ const CheckedButton = styled(Button)(() => ({
   textTransform: "lowercase",
   padding: 10,
 }));
+
+const OpenerButton = styled(Button)(() => ({
+  color: "#ffffff",
+  backgroundColor: "#bebad9",
+  "&:hover": {
+    backgroundColor: "#147594",
+  },
+  height: 30,
+  textTransform: "lowercase",
+  padding: 10,
+}));
+
 const UncheckedButton = styled(Button)(() => ({
   color: "#1ea4ce",
   backgroundColor: "#f4f3fc",
@@ -24,10 +37,18 @@ const UncheckedButton = styled(Button)(() => ({
   padding: 10,
   textTransform: "lowercase",
 }));
-export default function ItemTypeButtons() {
+export default function ItemTypeButtons({ setChartOpen, setFilterOpen }) {
   const dispatch = useDispatch();
   const itemType = useSelector((state) => state.itemTypeReducer);
+  const handleClickChartOpen = () => {
+    setChartOpen(true);
+  };
 
+  const handleClickFilterOpen = () => {
+    setFilterOpen(true);
+  };
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Fragment>
       <p
@@ -45,7 +66,12 @@ export default function ItemTypeButtons() {
       >
         Products
       </p>
-      <Grid>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        direction="row"
+      >
         {itemType === "mug" ? (
           <div>
             <CheckedButton style={{ margin: 8, marginLeft: 0 }}>
@@ -68,6 +94,16 @@ export default function ItemTypeButtons() {
             <CheckedButton>shirt</CheckedButton>
           </div>
         )}
+        {isSmall? (<Grid item>
+          <OpenerButton
+            style={{ margin: 8, marginLeft: 0 }}
+            onClick={handleClickFilterOpen}
+          >
+            Filters
+          </OpenerButton>
+          <OpenerButton onClick={handleClickChartOpen}>Cart</OpenerButton>
+        </Grid>):(<Grid item></Grid>)}
+        
       </Grid>
     </Fragment>
   );

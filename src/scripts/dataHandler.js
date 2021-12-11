@@ -16,7 +16,8 @@ const DataHandler = ({ items }) => {
     let shirts = [];
     let brandTypes = { mug: [], shirt: [] };
     let tagTypes = { mug: [], shirt: [] };
-    items.forEach((item) => {//pops unwanted tagged or branded items
+    items.forEach((item) => {
+      //pops unwanted tagged or branded items
       if (item?.itemType === "mug") {
         mugs.push(item);
         brandTypes.mug = [...new Set([...brandTypes.mug, item?.manufacturer])];
@@ -40,6 +41,7 @@ const DataHandler = ({ items }) => {
     setShirts(shirts);
   }, []);
   useEffect(() => {
+    let start = performance.now();
     console.log("start to filter and sort", tags, brands, itemType, sortType);
     if (tags && brands && itemType && (sortType == 0 || sortType)) {
       let data;
@@ -66,15 +68,28 @@ const DataHandler = ({ items }) => {
           data = data.sort((b, a) => a.price - b.price);
         } else if (sortType == 0) {
           data = data.sort((a, b) => a.price - b.price);
-        }if (sortType == 3) {
+        }
+        if (sortType == 3) {
           data = data.sort((b, a) => a.added - b.added);
         } else if (sortType == 2) {
           data = data.sort((a, b) => a.added - b.added);
         }
 
         dispatch({ type: "SET_DATA", data: [...data] });
+        var fullList;
+        if (!brands.checked && !tags.checked) {
+          fullList = true;
+        } else {
+          fullList = brands.checked?.length === 0 && tags.checked?.length === 0;
+        }
+        if (itemType === "mugs" && fullList) {
+          setMugs(data);
+        } if(itemType === "shirts" && fullList){
+          setShirts(data);
+        }
       }
     }
+    console.log(start - performance.now());
   }, [tags, brands, itemType, sortType]);
 };
 

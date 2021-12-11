@@ -31,7 +31,7 @@ export default function SortTab() {
     setSelectedIndex(event.target.id);
   };
   return (
-    <Fragment item>
+    <Fragment>
       <div
         style={{
           margin: 8,

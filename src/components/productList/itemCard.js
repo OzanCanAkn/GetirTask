@@ -55,7 +55,7 @@ export default function ItemCard({ item }) {
   }, [chartItems, dataChange]);
 
   return (
-    <Grid item xs={6} md={4} lg={3} direction="column">
+    <Grid item xs={6} sm={3} md={4} lg={3} container direction="column">
       <div
         item
         xs="6"
@@ -68,7 +68,7 @@ export default function ItemCard({ item }) {
         <img
           alt="filler"
           style={{
-            width: "100%",
+            width: "100%",maxHeight:150
           }}
           src={placeHolder}
         ></img>

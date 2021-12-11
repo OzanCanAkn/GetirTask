@@ -6,24 +6,27 @@ import ItemTypeButtons from "./itemTypeButtons";
 import PaginationTab from "./pagination";
 import { useSelector } from "react-redux";
 
-export default function ProductList() {
+export default function ProductList({setChartOpen,setFilterOpen}) {
   const [pagination, setPagination] = useState(1);
   const items = useSelector((state) => state.dataReducer);
+  
   useEffect(() => {
     if (pagination != 1) {
       setPagination(1);
     }
   }, [items]);
+  
   return (
     <Grid
       item
-      xs={6}
+      md={6}
+      xs={12}
       direction="column"
       alignItems="flex-start"
       justifyContent="flex-start"
       container
     >
-      <ItemTypeButtons></ItemTypeButtons>
+      <ItemTypeButtons setFilterOpen={setFilterOpen} setChartOpen={setChartOpen}></ItemTypeButtons>
       <Grid
         style={{
           backgroundColor: "#ffffff",

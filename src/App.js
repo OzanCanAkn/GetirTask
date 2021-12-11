@@ -1,37 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import {
-  ProductList,
-  Header,
-  CheckboxGroup,
-  SortTab,
-  Chart,
-  Footer,
-} from "./components";
-import { Grid } from "@mui/material";
+import BigScreen from "./layout/bigScreen";
+import SmallScreen from "./layout/smallScreen";
 import DataHandler from "./scripts/dataHandler";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 const items = require("./constants/items.json");
 function App() {
-  DataHandler({items:items})
-  return (
-    <div style={{ backgroundColor: "#fafafa" }}>
-      <Header></Header>
-      <Grid style={{ marginLeft: "5vw", marginRight: "5vw", marginTop: "7vh" }}>
-        <Grid container>
-          <Grid xs={3} style={{ paddingRight: 16 }} item id="filtersContainer">
-            <SortTab></SortTab>
-            <CheckboxGroup groupType="brand"></CheckboxGroup>
-            <CheckboxGroup groupType="tag"></CheckboxGroup>
-          </Grid>
-          <ProductList
-            items={items}
-          ></ProductList>
-          <Chart item xs={3}></Chart>
-        </Grid>
-        <Footer></Footer>
-      </Grid>
-    </div>
-  );
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+  DataHandler({ items: items });
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+  return <>{isSmall ? <SmallScreen></SmallScreen> : <BigScreen></BigScreen>}</>;
 }
 
 export default App;
