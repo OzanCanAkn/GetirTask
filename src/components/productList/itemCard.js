@@ -96,12 +96,12 @@ export default function ItemCard({ item }) {
         </p>
         <p
           style={{
-            fontFamily: "Open Sans",
+            fontFamily: "sans-serif",
             fontStyle: "normal",
             fontWeight: 600,
             fontSize: 14,
             lineHeight: 1.6,
-            color: " #191919",
+            color: " #2d2d2d",
             margin: 7,
             minHeight: "3rem",
           }}

@@ -6,7 +6,6 @@ import DataHandler from "./api";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const items = require("./constants/items.json");
 function App() {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));

@@ -6,6 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { TextField, Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import { StyledCheckbox } from "./styledCheckbox";
 export default function CheckboxGroup({ groupType }) {
   //groupType is definition of this component whether brands or tags | string
   const itemType = useSelector((state) => state.itemTypeReducer);
@@ -64,7 +65,6 @@ export default function CheckboxGroup({ groupType }) {
   const handleTextChange = (event) => {
     setName(event.target.value);
   };
-  console.log("array", array);
   return (
     <Fragment>
       <div
@@ -107,13 +107,15 @@ export default function CheckboxGroup({ groupType }) {
                 fontStyle: "normal",
                 fontWeight: "normal",
                 fontSize: 16,
+                letterSpacing: 0.16,
+                color: "#525252",
                 display: "flex",
                 alignItems: "center",
                 textAlign: "left",
               }}
               disableTypography
               control={
-                <Checkbox
+                <StyledCheckbox
                   checked={checkedList?.length < 1}
                   onChange={handleChangeAll}
                   name={"All"}
@@ -132,20 +134,22 @@ export default function CheckboxGroup({ groupType }) {
                         fontStyle: "normal",
                         fontWeight: "normal",
                         fontSize: 16,
+                        letterSpacing: 0.16,
+                        color: "#525252",
                         display: "flex",
                         alignItems: "center",
                         textAlign: "left",
                       }}
                       disableTypography
                       control={
-                        <Checkbox
+                        <StyledCheckbox
                           checked={checkedList?.includes(field) ? 1 : 0}
                           onChange={handleChange}
                           name={field}
                         />
                       }
                       label={`${field} (${array[itemType][field].count})`}
-                    />
+                      />
                   );
                 }
               } else {
@@ -156,6 +160,8 @@ export default function CheckboxGroup({ groupType }) {
                       fontStyle: "normal",
                       fontWeight: "normal",
                       fontSize: 16,
+                      letterSpacing: 0.16,
+                      color: "#525252",
                       display: "flex",
                       alignItems: "center",
                       textAlign: "left",
@@ -163,7 +169,7 @@ export default function CheckboxGroup({ groupType }) {
                     disableTypography
                     key={key}
                     control={
-                      <Checkbox
+                      <StyledCheckbox
                         checked={checkedList?.includes(field) ? 1 : 0}
                         onChange={handleChange}
                         name={field}

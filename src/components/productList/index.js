@@ -41,7 +41,7 @@ export default function ProductList({setChartOpen,setFilterOpen}) {
           justifyContent="flex-start"
           alignItems="flex-start"
           spacing={2}
-        >
+        >{items.length<1 ? (<p style={{margin:"auto"}}>there is no item in our database with given filters</p>):(<></>)}
           {items.slice((pagination - 1) * 16, pagination * 16).map((item) => {
             return <ItemCard item={item}></ItemCard>;
           })}

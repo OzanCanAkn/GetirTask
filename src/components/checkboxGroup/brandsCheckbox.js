@@ -3,7 +3,7 @@ import "./checkboxGroup.css";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import { StyledCheckbox } from "./styledCheckbox";
 import { TextField, Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 export default function BrandsCheckbox({ groupType }) {
@@ -106,13 +106,15 @@ export default function BrandsCheckbox({ groupType }) {
                 fontStyle: "normal",
                 fontWeight: "normal",
                 fontSize: 16,
+                letterSpacing: 0.16,
+                color: "#525252",
                 display: "flex",
                 alignItems: "center",
                 textAlign: "left",
               }}
               disableTypography
               control={
-                <Checkbox
+                <StyledCheckbox
                   checked={checkedList?.length < 1}
                   onChange={handleChangeAll}
                   name={"All"}
@@ -132,19 +134,21 @@ export default function BrandsCheckbox({ groupType }) {
                           fontStyle: "normal",
                           fontWeight: "normal",
                           fontSize: 16,
+                          letterSpacing: 0.16,
+                          color: "#525252",
                           display: "flex",
                           alignItems: "center",
                           textAlign: "left",
                         }}
                         disableTypography
                         control={
-                          <Checkbox
+                          <StyledCheckbox
                             checked={checkedList?.includes(field) ? 1 : 0}
                             onChange={handleChange}
                             name={field}
                           />
                         }
-                        label={array[itemType][field].name}
+                        label={`${array[itemType][field].name} (${array[itemType][field].count})`}
                       />
                     );
                   }
@@ -156,6 +160,8 @@ export default function BrandsCheckbox({ groupType }) {
                         fontStyle: "normal",
                         fontWeight: "normal",
                         fontSize: 16,
+                        letterSpacing: 0.16,
+                        color: "#525252",
                         display: "flex",
                         alignItems: "center",
                         textAlign: "left",
@@ -163,7 +169,7 @@ export default function BrandsCheckbox({ groupType }) {
                       disableTypography
                       key={key}
                       control={
-                        <Checkbox
+                        <StyledCheckbox
                           checked={checkedList?.includes(field) ? 1 : 0}
                           onChange={handleChange}
                           name={field}

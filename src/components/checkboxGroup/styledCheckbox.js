@@ -1,14 +1,14 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Radio from "@mui/material/Radio";
-import  tick  from "../../assets/png/tick.png";
+import tickWhite from "../../assets/png/tickWhite.png";
+import { Checkbox } from "@mui/material";
 
-const RadioStyled = styled("span")(({ theme }) => ({
-  borderRadius: "50%",
-  borderColor:"#1ea4ce",
-  width:24,
+const BoxStyled = styled("span")(({ theme }) => ({
+  borderColor: "#1ea4ce",
+  width: 24,
   height: 24,
-  boxShadow: "inset 0 0 0 2px #dfdee2, inset 0 -2px 0 #dfdee2",
+  marginLeft: 8,
+  boxShadow: "0 1px 7px rgb(90,60,160,.5)",
   backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
   backgroundImage:
     theme.palette.mode === "dark"
@@ -23,13 +23,10 @@ const RadioStyled = styled("span")(({ theme }) => ({
   },
 }));
 //1ea4ce
-const RadioStyledChecked = styled(RadioStyled)({
-  borderColor:"#1ea4ce",
-  backgroundColor: "#ffffff",
-  backgroundImage: `url(${tick})`,
-  backgroundRepeat:"no-repeat",
-  backgroundPosition: "center",
-  boxShadow:"inset 0 0 0 2px #1ea4ce, inset 0 -2px 0 #1ea4ce",
+const BoxStyledChecked = styled(BoxStyled)({
+  boxShadow: "0 1px 7px rgb(90,60,160,.5)",
+
+  backgroundColor: "#1ea4ce",
   "&:before": {
     display: "block",
     width: 24,
@@ -37,13 +34,25 @@ const RadioStyledChecked = styled(RadioStyled)({
     content: '""',
   },
   "input:hover ~ &": {
-    backgroundColor: "#fefefe",
+    backgroundColor: "#198eb3",
+  },
+  backgroundImage: `url(${tickWhite})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  "&:before": {
+    display: "block",
+    width: 24,
+    height: 24,
+    content: '""',
+  },
+  "input:hover ~ &": {
+    backgroundColor: "#198eb3",
   },
 });
 
-export function RadioButton(props) {
+export function StyledCheckbox(props) {
   return (
-    <Radio
+    <Checkbox
       sx={{
         "&:hover": {
           bgcolor: "transparent",
@@ -51,8 +60,8 @@ export function RadioButton(props) {
       }}
       disableRipple
       color="default"
-      checkedIcon={<RadioStyledChecked />}
-      icon={<RadioStyled />}
+      checkedIcon={<BoxStyledChecked />}
+      icon={<BoxStyled />}
       {...props}
     />
   );

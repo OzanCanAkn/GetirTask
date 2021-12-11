@@ -4,7 +4,6 @@ import { sort } from "../constants/httpQueries";
 import axios from "axios";
 import { getFiltered, getAll } from "./queries";
 const DataHandler = () => {
-  //items is json object of items.json
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tagsReducer);
   const brands = useSelector((state) => state.brandsReducer);
