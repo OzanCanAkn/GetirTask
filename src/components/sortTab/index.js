@@ -1,4 +1,3 @@
-import "./sortTab.css";
 import React, { useState, useEffect, Fragment } from "react";
 import { Grid } from "@mui/material";
 import { RadioButton } from "./RadioButton";

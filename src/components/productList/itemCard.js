@@ -1,6 +1,8 @@
 import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import placeHolder from "../../assets/png/placeHolder.png";
+import mugPlaceHolder from "../../assets/png/mugPlaceholder.png";
+import shirtPlaceHolder from "../../assets/png/shirtPlaceholder.png";
+
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,7 +79,7 @@ export default function ItemCard({ item }) {
             width: "100%",
             maxHeight: 150,
           }}
-          src={placeHolder}
+          src={`${item?.itemType==="mug"? mugPlaceHolder:shirtPlaceHolder}`}
         ></img>
       </div>
       <Grid
