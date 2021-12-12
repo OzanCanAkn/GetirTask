@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/48286710/145711004-3db2f1e7-c27a-436b-b429-a4983d5eaac5.png)
+![image](https://user-images.githubusercontent.com/48286710/145713370-9c2b02a4-8368-4ddc-aa8c-838264dffdfb.png)
+
 
 ## Development Proccess
 
