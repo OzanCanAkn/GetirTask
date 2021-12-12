@@ -5,6 +5,7 @@ import sortReducer from "./sortReducer";
 import dataReducer from "./dataReducer";
 import chartReducer from "./chartReducer";
 import itemTypeReducer from "./itemTypeReducer";
+import pageReducer from "./pageReducer";
 const reducers = combineReducers({
   tagsReducer,
   brandsReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   dataReducer,
   chartReducer,
   itemTypeReducer,
+  pageReducer,
 });
 
 export default reducers;

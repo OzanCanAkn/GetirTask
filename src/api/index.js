@@ -2,16 +2,27 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sort } from "../constants/httpQueries";
 import axios from "axios";
-import { getFiltered, getAll } from "./queries";
+import { getFiltered } from "./queries";
 const DataHandler = () => {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tagsReducer);
   const brands = useSelector((state) => state.brandsReducer);
   const itemType = useSelector((state) => state.itemTypeReducer);
   const sortType = useSelector((state) => state.sortReducer);
+  const pageData = useSelector((state) => state.pageReducer);
   const [items, setItems] = useState();
   const [firstRender, setFirstRender] = useState(true);
   const [map, setMap] = useState();
+
+  //for not rerender when total page count change
+  const [initialPage, setInitialPage] = useState(1);
+  useEffect(() => {
+    if (pageData.init !== initialPage) {
+      setInitialPage(pageData.init);
+    }
+  }, [pageData]);
+
+  //getting all data
   useEffect(() => {
     axios.get("https://getir-db.herokuapp.com/items").then((res) => {
       setItems(res.data);
@@ -24,11 +35,11 @@ const DataHandler = () => {
         x = { ...x, [company.slug]: { name: company.name, count: 0 } };
       });
       setMap(x);
-      console.log(x);
+      console.log("api", x);
     });
   }, []);
   useEffect(() => {
-    //finds mugs array,shirts array, unique brand types, unique tag types and sends them to reducers
+    //gets mugs array,shirts array, unique brand types, unique tag types and sends them to reducers
     if (items?.length > 0 && firstRender && map) {
       let mapMug = map;
       let mapShirt = map;
@@ -74,10 +85,11 @@ const DataHandler = () => {
       }
     }
   }, [items, map]);
-  
+
   useEffect(() => {
+    console.log("rendered")
+    //sends request among filter change
     let start = performance.now();
-    console.log(brands.mug);
     if (
       Object.keys(tags.mug).length > 0 &&
       Object.keys(brands.mug).length > 0 &&
@@ -89,7 +101,7 @@ const DataHandler = () => {
           getFiltered(
             sort[sortType],
             16,
-            1,
+            initialPage,
             itemType,
             brands.checked,
             tags.checked
@@ -97,10 +109,14 @@ const DataHandler = () => {
         )
         .then((res) => {
           dispatch({ type: "SET_DATA", data: res.data });
+          dispatch({
+            type: "SET_TOTAL_PAGE",
+            total: Math.ceil(parseInt(res.headers["x-total-count"]) / 16),
+          });
         });
       console.log(start - performance.now());
     }
-  }, [tags, brands, itemType, sortType]);
+  }, [tags, brands, itemType, sortType, initialPage]);
 };
 
 export default DataHandler;

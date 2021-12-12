@@ -1,8 +1,5 @@
 const URL = "https://getir-db.herokuapp.com/";
-const getAll = () => {
-  const query = URL.concat("items");
-  return query;
-};
+
 
 const getFiltered = (sorting, pageLimit, initialPage, itemType, brands, tags) => {
   let tag = "";
@@ -27,4 +24,4 @@ const getFiltered = (sorting, pageLimit, initialPage, itemType, brands, tags) =>
     .concat(`&itemType=${itemType}`);
   return query;
 };
-export { getAll, getFiltered };
+export {  getFiltered };

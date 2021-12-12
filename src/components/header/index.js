@@ -1,4 +1,3 @@
-import "./header.css";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ReactComponent as logo } from "../../assets/svg/logo.svg";
@@ -22,12 +21,17 @@ function Basket() {
       direction="row"
       container
       item
-      id="basketContainer"
+      style={{ backgroundColor: "#147594", height: "7vh" }}
       alignItems="center"
       justifyContent="center"
-      xs={3}
+      xs={5}
+      md={3}
     >
-      <SvgIcon id="lock" viewBox="0 0 14 18" component={lock} />
+      <SvgIcon
+        viewBox="0 0 14 18"
+        style={{ paddingLeft: 8, paddingRight: "1rem" }}
+        component={lock}
+      />
       <b style={{ color: "white" }}>₺ {`${total ? total : "0.00"}`}</b>
     </Grid>
   );
@@ -35,7 +39,19 @@ function Basket() {
 
 export default function Header() {
   return (
-    <Grid id="container">
+    <Grid
+      style={{
+        width: "100%",
+        height: "7vh",
+        paddingLeft: "5vw",
+        paddingRight: "5vw",
+        marginBottom: "3vh",
+        backgroundColor: "#1ea4ce",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <SvgIcon
         style={{ width: "142", height: "7vh", position: "absolute" }}
         viewBox="0 0 142 41"

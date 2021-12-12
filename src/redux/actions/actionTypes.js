@@ -8,3 +8,5 @@ export const DECREASE_ITEM_COUNT = "DECREASE_ITEM_COUNT";
 export const SET_DATA = "SET_DATA";
 export const SET_SORT_TYPE = "SET_SORT_TYPE";
 export const CHANGE_ITEM_TYPE = "CHANGE_ITEM_TYPE";
+export const SET_TOTAL_PAGE = "SET_TOTAL_PAGE";
+export const SET_INIT_PAGE = "SET_INIT_PAGE";
