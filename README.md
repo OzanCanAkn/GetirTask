@@ -1,44 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
-
-## Available Scripts
+## Development Proccess
 
 In the project directory, you can run:
 
-### `npm start`
+### `Structure: `
+At project structure I tried to use component based structure for making my work reusable. Then I collect them at the components directory in src. Used scripts named “Api” for fetching data from my fake json server. Decided to use the Heroku app for hosting my fake-json server.  And also I wrote an arrow function which returns http get request query according to changed filters. I decided to use redux so nearly didn’t use prop drilling.
+###	`Redux:`
+		For managing my states I used Redux. I think redux is more usable when we compare according to the dynamism of the program. I have 8 different reducer types.
+###	`Styling: `
+Material.ui library used generally for creating my components and that is easy to style because of override ability . I used jss for my styling events because reading and copying css in js elements are easy. The checkbox and radio button items were hard to create for me because I styled them from span.
+###`Responsive Design:`
+	For browser compatibility I used flex boxes in nearly every component I use. 
+Tried nearly every combination and designed again for compatibility. And I got approximately 90 points on the accessibility part of the lighthouse a11y test.
+###`Layouts:`
+		For making the app more responsive I decided to implement two different layouts one of them for large screens and the other for small screens. When the small screen layout opens our filters and cart opens when we click buttons. Large screen layout is the same as the one given in the .fig file.
+###`Tests:`
+		For understanding whether a component is rendered without crush I wrote a test file. But I know it wasn't complicated. In complex projects components need more complexible tests..
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
