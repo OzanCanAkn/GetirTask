@@ -1,7 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import App from "./App";
 import { shallow } from "enzyme";
 import configureStore from "./redux/reducers/configureStore";
 const store = configureStore();
@@ -14,7 +12,6 @@ import {
   Footer,
   BrandsCheckbox,
 } from "./components";
-import ChartTotal from "./components/chart/chartTotal";
 describe("rendering components", () => {
   it("renders ProductList component without crash", () => {
     shallow(
