@@ -51,7 +51,6 @@ const DataHandler = () => {
     if (items?.length > 0 && firstRender && map) {
       let mapMug = map;
       let mapShirt = map;
-      console.log(items);
       setFirstRender(false);
       let mugs = [];
       let shirts = [];
@@ -131,7 +130,7 @@ const DataHandler = () => {
 
         // Interacting with the store, see `localForage` API.
       });
-      console.log(start - performance.now());
+      console.log("fetch time(server or cache)",start - performance.now());
     }
   }, [tags, brands, itemType, sortType]);
 
@@ -164,7 +163,7 @@ const DataHandler = () => {
           });
           // Interacting with the store, see `localForage` API.
         });
-        console.log(start - performance.now());
+        console.log("fetch time(server or cache)",start - performance.now());
       }
     } else {
       setIsFilterChange(false);
