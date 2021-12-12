@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/48286710/145710943-d7c4de08-4fac-4270-8f14-6502702a4fa6.png)
+
 ## Development Proccess
 
 ### `Structure: `
@@ -34,3 +36,6 @@ Contains initial page number and total pages number.
 ##### sortReducer:
 For defining a type of sort that contains just an index which is index of array in sort component in shown order.
 ### `Lighthouse:`
+Tried to improve performance but some compress techniques needed I guess. And I didn't want to give width and height values of images for responsiveness but that reduced performance a bit.
+
+![image](https://user-images.githubusercontent.com/48286710/145710863-fe2c37f8-a24f-44ed-aa8a-fceb59ca25d5.png)
