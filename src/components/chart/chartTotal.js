@@ -1,5 +1,6 @@
 import React from "react";
 export default function ChartTotal({ total }) {
+  //total price of items which in cart
   return (
     <div
       style={{

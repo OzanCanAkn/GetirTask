@@ -40,6 +40,7 @@ const DataHandler = () => {
   }, []);
   useEffect(() => {
     //gets mugs array,shirts array, unique brand types, unique tag types and sends them to reducers
+    //runs just first run
     if (items?.length > 0 && firstRender && map) {
       let mapMug = map;
       let mapShirt = map;
@@ -87,7 +88,6 @@ const DataHandler = () => {
   }, [items, map]);
 
   useEffect(() => {
-    console.log("rendered")
     //sends request among filter change
     let start = performance.now();
     if (

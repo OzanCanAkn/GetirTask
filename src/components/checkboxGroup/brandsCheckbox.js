@@ -8,7 +8,7 @@ import { TextField, Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
-export default function BrandsCheckbox({ groupType }) {
+export default function BrandsCheckbox() {
   //groupType is definition of this component whether brands or tags | string
   const itemType = useSelector((state) => state.itemTypeReducer);
   const array = useSelector((state) => state[`brandsReducer`]);

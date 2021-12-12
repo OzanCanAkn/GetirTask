@@ -17,6 +17,7 @@ const getFiltered = (sorting, pageLimit, initialPage, itemType, brands, tags) =>
 
     brand = brand.slice(0, -1);
   }
+  //query for fetch data with all filters
   const query = `${URL.concat("items")}?${sorting}`
     .concat(initialPage && pageLimit ? `_page=${initialPage}&_limit=${pageLimit}` : "")
     .concat(tag?.length > 0 ? `&tags_like=${tag}` : "")
