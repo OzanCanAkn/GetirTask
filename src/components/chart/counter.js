@@ -6,8 +6,9 @@ import { Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 export default function Counter({ item }) {
+  //a item from basket
+  //this component is - + signs and a displays for item count
   const dispatch = useDispatch();
-
   const handleIncrease = () => {
     dispatch({
       type: `INCREASE_ITEM_COUNT`,

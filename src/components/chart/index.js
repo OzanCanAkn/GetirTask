@@ -38,7 +38,7 @@ export default function Chart() {
           ) : (
             <></>
           )}
-          {items.map((item, key) => {
+          {items.map((item, key) => {//renders all items in chart
             return (
               <Grid
                 item
