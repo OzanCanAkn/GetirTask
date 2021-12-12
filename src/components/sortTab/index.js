@@ -1,5 +1,5 @@
 import "./sortTab.css";
-import React, { useState, useEffect,Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Grid } from "@mui/material";
 import { RadioButton } from "./RadioButton";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,13 +13,15 @@ export default function SortTab() {
     "New to old",
     "Old to new",
   ];
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState();
 
   useEffect(() => {
-    dispatch({
-      type: `SET_SORT_TYPE`,
-      sortTypeIndex: selectedIndex,
-    });
+    if (selectedIndex) {
+      dispatch({
+        type: `SET_SORT_TYPE`,
+        sortTypeIndex: selectedIndex,
+      });
+    }
   }, [selectedIndex]);
 
   useEffect(() => {

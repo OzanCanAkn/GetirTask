@@ -4,6 +4,8 @@ import placeHolder from "../../assets/png/placeHolder.png";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 const ColorButton = styled(Button)(() => ({
   color: "#ffffff",
   backgroundColor: "#1ea4ce",
@@ -14,6 +16,10 @@ const ColorButton = styled(Button)(() => ({
   height: 22,
 }));
 export default function ItemCard({ item }) {
+  const theme = useTheme();
+
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
   //prop is a item from items.json
   const dispatch = useDispatch();
   const chartItems = useSelector((state) => state.chartReducer);
@@ -55,7 +61,7 @@ export default function ItemCard({ item }) {
   }, [chartItems, dataChange]);
 
   return (
-    <Grid item xs={6} sm={3} md={4} lg={3} container direction="column">
+    <Grid item xs={6} sm={3} md={6} lg={4} xl={3} container direction="column">
       <div
         item
         xs="6"
@@ -68,7 +74,8 @@ export default function ItemCard({ item }) {
         <img
           alt="filler"
           style={{
-            width: "100%",maxHeight:150
+            width: "100%",
+            maxHeight: 150,
           }}
           src={placeHolder}
         ></img>
