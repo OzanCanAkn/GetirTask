@@ -23,6 +23,7 @@ const getFiltered = (sorting, pageLimit, initialPage, itemType, brands, tags) =>
     .concat(tag?.length > 0 ? `&tags_like=${tag}` : "")
     .concat(brand ? `&manufacturer_like=${brand}` : "")
     .concat(`&itemType=${itemType}`);
+    console.log(query)
   return query;
 };
 export {  getFiltered };

@@ -13,7 +13,7 @@ const DataHandler = () => {
   const [items, setItems] = useState();
   const [firstRender, setFirstRender] = useState(true);
   const [map, setMap] = useState();
-
+  const [isFilterChange, setIsFilterChange] = useState(false);
   //for not rerender when total page count change
   const [initialPage, setInitialPage] = useState(1);
   useEffect(() => {
@@ -90,6 +90,14 @@ const DataHandler = () => {
   useEffect(() => {
     //sends request among filter change
     let start = performance.now();
+    if (initialPage !== 1) {
+      setIsFilterChange(true);
+    }
+    dispatch({
+      type: "SET_INIT_PAGE",
+      init: 1,
+    });
+    setInitialPage(1);
     if (
       Object.keys(tags.mug).length > 0 &&
       Object.keys(brands.mug).length > 0 &&
@@ -101,7 +109,7 @@ const DataHandler = () => {
           getFiltered(
             sort[sortType],
             16,
-            initialPage,
+            1,
             itemType,
             brands.checked,
             tags.checked
@@ -116,7 +124,42 @@ const DataHandler = () => {
         });
       console.log(start - performance.now());
     }
-  }, [tags, brands, itemType, sortType, initialPage]);
+  }, [tags, brands, itemType, sortType]);
+
+  useEffect(() => {
+    //sends request among filter change
+    if (!isFilterChange) {
+      let start = performance.now();
+      if (
+        Object.keys(tags.mug).length > 0 &&
+        Object.keys(brands.mug).length > 0 &&
+        itemType &&
+        (sortType == 0 || sortType)
+      ) {
+        axios
+          .get(
+            getFiltered(
+              sort[sortType],
+              16,
+              initialPage,
+              itemType,
+              brands.checked,
+              tags.checked
+            )
+          )
+          .then((res) => {
+            dispatch({ type: "SET_DATA", data: res.data });
+            dispatch({
+              type: "SET_TOTAL_PAGE",
+              total: Math.ceil(parseInt(res.headers["x-total-count"]) / 16),
+            });
+          });
+        console.log(start - performance.now());
+      }
+    } else {
+      setIsFilterChange(false);
+    }
+  }, [initialPage]);
 };
 
 export default DataHandler;
