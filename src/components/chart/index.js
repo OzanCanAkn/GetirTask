@@ -33,7 +33,7 @@ export default function Chart() {
                 borderBottom: "1px solid #f6f6f6",
               }}
             >
-              Your Chart is Empty
+              Your Cart is Empty
             </p>
           ) : (
             <></>

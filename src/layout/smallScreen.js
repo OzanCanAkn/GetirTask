@@ -6,6 +6,7 @@ import {
   SortTab,
   Chart,
   Footer,
+  BrandsCheckbox,
 } from "../components";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -22,7 +23,6 @@ export default function SmallScreen() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-
   const handleChartClose = () => {
     setChartOpen(false);
   };
@@ -36,7 +36,10 @@ export default function SmallScreen() {
       <Header></Header>
       <Grid style={{ marginLeft: "5vw", marginRight: "5vw", marginTop: "7vh" }}>
         <Grid container>
-          <ProductList setFilterOpen={setFilterOpen} setChartOpen={setChartOpen}></ProductList>
+          <ProductList
+            setFilterOpen={setFilterOpen}
+            setChartOpen={setChartOpen}
+          ></ProductList>
         </Grid>
         <Footer></Footer>
       </Grid>
@@ -50,8 +53,8 @@ export default function SmallScreen() {
           <DialogContentText>
             <Grid style={{ paddingRight: 16 }} item id="filtersContainer">
               <SortTab></SortTab>
+              <BrandsCheckbox groupType="tag"></BrandsCheckbox>
               <CheckboxGroup groupType="brand"></CheckboxGroup>
-              <CheckboxGroup groupType="tag"></CheckboxGroup>
             </Grid>
           </DialogContentText>
         </DialogContent>
