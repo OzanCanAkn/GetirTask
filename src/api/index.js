@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { sort } from "../constants/httpQueries";
 import axios from "axios";
 import { getFiltered } from "./queries";
+import { setupCache } from "axios-cache-adapter";
+export const cache = setupCache({
+  maxAge: 15 * 60 * 1000,
+});
+
+export const api = axios.create({
+  adapter: cache.adapter,
+});
 const DataHandler = () => {
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tagsReducer);
@@ -35,7 +43,6 @@ const DataHandler = () => {
         x = { ...x, [company.slug]: { name: company.name, count: 0 } };
       });
       setMap(x);
-      console.log("api", x);
     });
   }, []);
   useEffect(() => {
@@ -104,24 +111,26 @@ const DataHandler = () => {
       itemType &&
       (sortType == 0 || sortType)
     ) {
-      axios
-        .get(
-          getFiltered(
-            sort[sortType],
-            16,
-            1,
-            itemType,
-            brands.checked,
-            tags.checked
-          )
-        )
-        .then((res) => {
-          dispatch({ type: "SET_DATA", data: res.data });
-          dispatch({
-            type: "SET_TOTAL_PAGE",
-            total: Math.ceil(parseInt(res.headers["x-total-count"]) / 16),
-          });
+      api({
+        url: `${getFiltered(
+          sort[sortType],
+          16,
+          1,
+          itemType,
+          brands.checked,
+          tags.checked
+        )}`,
+        method: "get",
+      }).then(async (response) => {
+        // Do something fantastic with response.data \o/
+        dispatch({ type: "SET_DATA", data: response.data });
+        dispatch({
+          type: "SET_TOTAL_PAGE",
+          total: Math.ceil(parseInt(response.headers["x-total-count"]) / 16),
         });
+
+        // Interacting with the store, see `localForage` API.
+      });
       console.log(start - performance.now());
     }
   }, [tags, brands, itemType, sortType]);
@@ -136,24 +145,25 @@ const DataHandler = () => {
         itemType &&
         (sortType == 0 || sortType)
       ) {
-        axios
-          .get(
-            getFiltered(
-              sort[sortType],
-              16,
-              initialPage,
-              itemType,
-              brands.checked,
-              tags.checked
-            )
-          )
-          .then((res) => {
-            dispatch({ type: "SET_DATA", data: res.data });
-            dispatch({
-              type: "SET_TOTAL_PAGE",
-              total: Math.ceil(parseInt(res.headers["x-total-count"]) / 16),
-            });
+        api({
+          url: `${getFiltered(
+            sort[sortType],
+            16,
+            initialPage,
+            itemType,
+            brands.checked,
+            tags.checked
+          )}`,
+          method: "get",
+        }).then(async (response) => {
+          // Do something fantastic with response.data \o/
+          dispatch({ type: "SET_DATA", data: response.data });
+          dispatch({
+            type: "SET_TOTAL_PAGE",
+            total: Math.ceil(parseInt(response.headers["x-total-count"]) / 16),
           });
+          // Interacting with the store, see `localForage` API.
+        });
         console.log(start - performance.now());
       }
     } else {
