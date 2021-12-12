@@ -62,11 +62,9 @@ export default function ProductList({ setChartOpen, setFilterOpen }) {
               ) : (
                 <></>
               )}
-              {items
-                .slice((pagination - 1) * 16, pagination * 16)
-                .map((item) => {
-                  return <ItemCard item={item}></ItemCard>;
-                })}
+              {items.map((item) => {
+                return <ItemCard item={item}></ItemCard>;
+              })}
             </Grid>
           )}
         </Grid>
